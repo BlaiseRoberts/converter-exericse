@@ -16,6 +16,18 @@ var button = document.getElementById("converter");
 // happen based on which radio button is selected.
 function determineConverter (clickEvent) {
   console.log("event", clickEvent);
+  if (document.getElementById("fahrenheit").checked === true) {
+  	toCelsius();
+  	console.log(temperature)
+  } else (document.getElementById("celsius").checked === true) {
+  	toFahrenheit();
+  	console.log(temperature)
+  };
+
+
+
+
+
 }
 
 // Assign a function to be executed when the button is clicked
