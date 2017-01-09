@@ -5,21 +5,23 @@ var f_temperature;
 function toCelsius () {
 	var temperature = parseFloat(document.getElementById("temperature").value);
 	console.log(temperature);
-	var c_temperature = temperature-32;
-	var c_temperature = c_temperature/1.8;
-	var c_temperature = Math.round(c_temperature)
+	c_temperature = temperature-32;
+	c_temperature = c_temperature/1.8;
+	c_temperature = Math.round(c_temperature)
 	console.log(c_temperature);
 	result.innerHTML = result.innerHTML + c_temperature + " degrees Celsius!";
+	addColor();
 }
 
 function toFahrenheit () {
 	var temperature = parseFloat(document.getElementById("temperature").value);
 	console.log(temperature);
-	var f_temperature = temperature*1.8;
-	var f_temperature = f_temperature+32;
-	var f_temperature = Math.round(f_temperature)
+	f_temperature = temperature*1.8;
+	f_temperature = f_temperature+32;
+	f_temperature = Math.round(f_temperature)
 	console.log(f_temperature);
 	result.innerHTML = result.innerHTML + f_temperature + " degrees Fahrenheit!";
+	addColor();
 }
 
 // Get a reference to the button element in the DOM
@@ -37,11 +39,9 @@ function determineConverter (clickEvent) {
   // console.log("event", clickEvent);
   if (document.getElementById("fahrenheit").checked === true) {
   	toFahrenheit();
-  	addColor();
   }
   if (document.getElementById("celsius").checked === true) {
   	toCelsius();
-  	addColor();
   }
 }
 // Assign a function to be executed when the button is clicked
@@ -52,12 +52,25 @@ reload.addEventListener("click", clear);
 //color decision
 function addColor () {
 	if (c_temperature>32 || f_temperature>90) {
-		result.style.color = red;
+		result.style.color = "red";
 	} else if (c_temperature<0 || f_temperature<32) {
-		result.style.color = lightblue;
+		result.style.color = "lightblue";
 	} else {
-		result.style.color = green;
+		result.style.color = "green";
 	}
 
 }
+
+
+//Trigger event when 'enter' is pushed in text input
+document.getElementById("temperature").onkeypress=function(e){
+    if(e.keyCode==13){
+        e.preventDefault();
+        var pressedEnter = document.getElementById("converter").click();
+    }
+}
+
+
+
+
 
